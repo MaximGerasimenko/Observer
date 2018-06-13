@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         loadJSON();
     }
 
-    private void loadJSOn(){
+    private void loadJSON(){
     try{
         if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty())
         {

@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
-        android:elevatin="3dp"
+        android:elevation="3dp"
         card_view:cardCornerRadius="@dimen/card_movie_radius">
 
         <RelativeLayout
@@ -43,7 +43,7 @@
                 android:layout_below="@+id/title"
                 android:paddingLeft="@dimen/movie_title_padding"
                 android:paddingRight="@dimen/movie_title_padding"
-                android:paddingButtom="@dimen/user_rating_padding_bottom"
+                android:paddingBottom="@dimen/user_rating_padding_bottom"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/user_rating"/>
 

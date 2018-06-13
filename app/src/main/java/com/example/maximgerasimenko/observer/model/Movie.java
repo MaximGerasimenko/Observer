@@ -32,10 +32,10 @@ public class Movie {
     private Integer voteCount;
     @SerializedName("video")
     private Boolean video;
-    @SerializedName("vote_avatage")
-    private Double voteAvarage;
+    @SerializedName("vote_average")
+    private Double voteAverage;
 
-    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, double populatiry, Integer voteCount, Boolean video, Double voteAvarage){
+    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, double populatiry, Integer voteCount, Boolean video, Double voteAverage){
         this.posterPath = posterPath;
         this.adult = adult;
         this.overview = overview;
@@ -49,7 +49,7 @@ public class Movie {
         this.populatiry = populatiry;
         this.voteCount = voteCount;
         this.video = video;
-        this.voteAvarage = voteAvarage;
+        this.voteAverage = voteAverage;
     }
     String baseImageUrl = "https://image.tmdb.org/t/p/w500";
 
@@ -148,12 +148,12 @@ public class Movie {
         this.video = video;
     }
 
-    public Double getVoteAvarage(){
-        return voteAvarage;
+    public Double getVoteAverage(){
+        return voteAverage;
     }
 
-    public void setVoteAvarage(Double voteAvarage){
-        this.voteAvarage = voteAvarage;
+    public void setVoteAverage(Double voteAvarage){
+        this.voteAverage = voteAvarage;
     }
 
 }
