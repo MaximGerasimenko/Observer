@@ -2,7 +2,6 @@ package com.example.maximgerasimenko.observer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.maximgerasimenko.observer.DetailActivity;
 import com.example.maximgerasimenko.observer.R;
 import com.example.maximgerasimenko.observer.model.Movie;
@@ -41,10 +39,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     String vote = Double.toString(movieList.get(i).getVoteAverage());
     viewHolder.userrating.setText(vote);
 
-    Glide.with(mContext)
+        Glide
+                .with(mContext)
             .load(movieList.get(i).getPosterPath())
-            .placeholder(R.drawable.load)
             .into(viewHolder.thumbnail);
+
     }
 
     @Override

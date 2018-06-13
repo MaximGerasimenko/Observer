@@ -40,9 +40,9 @@ public class DetailActivity extends AppCompatActivity {
             String rating = getIntent().getExtras().getString("vote_average");
             String dateOfRelease = getIntent().getExtras().getString("release_date");
 
-            Glide.with(this)
+            Glide
+                    .with(this)
                     .load(thumbnail)
-                    .placeholder(R.drawable.load)
                     .into(imageView);
 
             nameOfMovie.setText(movieName);

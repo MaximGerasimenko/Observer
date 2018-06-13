@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initViews();
+       setContentView(R.layout.activity_main);
+       initViews();
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.main_content);
         swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);
