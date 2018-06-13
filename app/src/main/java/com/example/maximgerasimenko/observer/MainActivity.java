@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         Call<MoviesResponse> call = apiService.getPopularMovies(BuildConfig.THE_MOVIE_DB_API_TOKEN);
         call.enqueue(new Callback<MoviesResponse>() {
             @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response){
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 List<Movie> movies = response.body().getResults();
                 recyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
                 recyclerView.smoothScrollToPosition(0);

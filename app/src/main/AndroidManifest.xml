@@ -21,6 +21,11 @@
         <activity android:name=".SettingsActivity"
             android:label="Settings">
         </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
