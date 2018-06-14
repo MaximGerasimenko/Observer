@@ -102,8 +102,7 @@ public class DetailActivity extends AppCompatActivity {
             Toast.makeText(this, "No API Data", Toast.LENGTH_SHORT).show();
         }
 
-        MaterialFavoriteButton materialFavoriteButtonNice =
-                (MaterialFavoriteButton) findViewById(R.id.favorite_button);
+        MaterialFavoriteButton materialFavoriteButtonNice = (MaterialFavoriteButton) findViewById(R.id.favorite_button);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
