@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         initViews();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
     }
 
     public Activity getActivity(){
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     //Wyswietlanie listy ulubionych filmow.
     private void initViews(){
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         movieList = new ArrayList<>();
         adapter = new MoviesAdapter(this, movieList);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         favoriteDbHelper = new FavoriteDbHelper(activity);
 
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.main_content);
+        swipeContainer = findViewById(R.id.main_content);
         swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
             @Override
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     //Wyswietlanie listy filmow
     private void initViews2(){
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         movieList = new ArrayList<>();
         adapter = new MoviesAdapter(this, movieList);

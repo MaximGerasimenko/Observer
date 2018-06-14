@@ -59,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,11 +67,11 @@ public class DetailActivity extends AppCompatActivity {
         initCollapsingToolbar();
 
         //Przypisanie do zmiennych ich miejsca w layoucie.
-        imageView = (ImageView) findViewById(R.id.thumbnail_image_header);
-        nameOfMovie = (TextView) findViewById(R.id.title);
-        plotSynopsis = (TextView) findViewById(R.id.plotsynopsis);
-        userRating = (TextView) findViewById(R.id.userrating);
-        releaseDate = (TextView) findViewById(R.id.releasedate);
+        imageView = findViewById(R.id.thumbnail_image_header);
+        nameOfMovie = findViewById(R.id.title);
+        plotSynopsis = findViewById(R.id.plotsynopsis);
+        userRating = findViewById(R.id.userrating);
+        releaseDate = findViewById(R.id.releasedate);
 
         Intent intentThatStartedThisActivity = getIntent();
         if(intentThatStartedThisActivity.hasExtra("original_title")){
@@ -139,9 +139,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initCollapsingToolbar(){
-        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        AppBarLayout appBarLayout = findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener(){
@@ -169,7 +169,7 @@ public class DetailActivity extends AppCompatActivity {
         trailerList = new ArrayList<>();
         adapter = new TrailerAdapter(this, trailerList);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view1);
+        recyclerView = findViewById(R.id.recycler_view1);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
