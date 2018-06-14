@@ -107,7 +107,7 @@ public class DetailActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = getSharedPreferences("com.delaroystudios.movieapp.DetailActivity", MODE_PRIVATE).edit();
                             editor.putBoolean("Favorite Added", true);
                             editor.apply();
-                            //saveFavorite();
+                            saveFavorite();
                             Snackbar.make(buttonView, "Added to Favorite",
                                     Snackbar.LENGTH_SHORT).show();
                         }else{
@@ -201,14 +201,16 @@ public class DetailActivity extends AppCompatActivity {
     public void saveFavorite(){
         favoriteDbHelper = new FavoriteDbHelper(activity);
         favorite = new Movie();
+        int movie_id = getIntent().getExtras().getInt("id");
+        String rate = getIntent().getExtras().getString("vote_average");
+        String poster = getIntent().getExtras().getString("poster_path");
 
-        Double rate = movie.getVoteAverage();
 
         favorite.setId(movie_id);
-        favorite.setOriginalTitle(movieName);
-        favorite.setPosterPath(thumbnail);
-        favorite.setVoteAverage(rate);
-        favorite.setOverview(synopsis);
+        favorite.setOriginalTitle(nameOfMovie.getText().toString().trim());
+        favorite.setPosterPath(poster);
+        favorite.setVoteAverage(Double.parseDouble(rate));
+        favorite.setOverview(plotSynopsis.getText().toString().trim());
 
         favoriteDbHelper.addFavorite(favorite);
     }
