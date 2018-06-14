@@ -54,11 +54,11 @@ public class FavoriteDbHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FavoriteContract.FavoriteEntry.TABLE_NAME);
-        //onCreate(sqLiteDatabase);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FavoriteContract.FavoriteEntry.TABLE_NAME);
+        onCreate(sqLiteDatabase);
 
     }
-/*
+
     public void addFavorite(Movie movie){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -119,5 +119,5 @@ public class FavoriteDbHelper extends SQLiteOpenHelper{
         db.close();
 
         return favoriteList;
-    }*/
+    }
 }
