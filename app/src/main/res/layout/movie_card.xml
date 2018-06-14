@@ -19,9 +19,9 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/movie_cover_height"
+                android:id="@+id/thumbnail"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY" />
 

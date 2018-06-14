@@ -2,30 +2,31 @@ package com.example.maximgerasimenko.observer.model;
 
 import com.google.gson.annotations.SerializedName;
 
+//Pobieranie oraz ustawienie informacji o trejlerach
 public class Trailer {
     @SerializedName("key")
     private String key;
     @SerializedName("name")
     private String name;
 
-    public Trailer(String key,String name){
-        this.key=key;
-        this.name=name;
+    //Constructor
+    public Trailer(String key, String name){
+        this.key = key;
+        this.name = name;
     }
 
-    public String getKey() {
+    //Pobieranie kluczu
+    public String getKey(){
         return key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getName() {
+    //Pobieranie nazwy
+    public String getName(){
         return name;
     }
 
-    public void setName(String name) {
+    //Ustawienie nazwy
+    public void setName(String name){
         this.name = name;
     }
 }

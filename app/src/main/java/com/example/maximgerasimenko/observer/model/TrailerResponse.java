@@ -4,20 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+
+//Pobieranie oraz wyswietlanie listy trejlerow.
 public class TrailerResponse {
+
     @SerializedName("id")
     private int id_trailer;
     @SerializedName("results")
-    public List<Trailer> results;
+    private List<Trailer> results;
 
-    public int getIdTrailer() {
-        return id_trailer;
-    }
-
-    public void setId_trailer(int id_trailer) {
-        this.id_trailer = id_trailer;
-    }
-
+    //Metoda pobierania listy trejlerow
     public List<Trailer> getResults(){
         return results;
     }
