@@ -66,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
 
         initCollapsingToolbar();
 
-        //Przypisanie do zmiennych ich miejsca w layoucie.
+        //Przypisanie do zmiennych ich miejsca w layoucie
         imageView = findViewById(R.id.thumbnail_image_header);
         nameOfMovie = findViewById(R.id.title);
         plotSynopsis = findViewById(R.id.plotsynopsis);
