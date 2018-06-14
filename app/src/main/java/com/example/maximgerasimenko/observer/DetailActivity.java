@@ -67,28 +67,26 @@ public class DetailActivity extends AppCompatActivity {
         releaseDate = (TextView) findViewById(R.id.releasedate);
 
         Intent intentThatStartedThisActivity = getIntent();
-        if (intentThatStartedThisActivity.hasExtra("movies")){
-
-            movie = getIntent().getParcelableExtra("movies");
-
-            thumbnail = movie.getPosterPath();
-            movieName = movie.getOriginalTitle();
-            synopsis = movie.getOverview();
-            rating = Double.toString(movie.getVoteAverage());
-            dateOfRelease = movie.getReleaseDate();
-            movie_id = movie.getId();
+        if(intentThatStartedThisActivity.hasExtra("original_title")){
+            String thumbnail = getIntent().getExtras().getString("poster_path");
+            String movieName = getIntent().getExtras().getString("original_title");
+            String synopsis = getIntent().getExtras().getString("overview");
+            String rating = getIntent().getExtras().getString("vote_average");
+            String dateOfRelease = getIntent().getExtras().getString("release_date");
 
             String poster = "https://image.tmdb.org/t/p/w500" + thumbnail;
 
-            Glide.with(this)
-                    .load(poster)
-                    //.placeholder(R.drawable.load)
+            Glide
+                    .with(this)
+                    .load(thumbnail)
                     .into(imageView);
+
 
             nameOfMovie.setText(movieName);
             plotSynopsis.setText(synopsis);
             userRating.setText(rating);
             releaseDate.setText(dateOfRelease);
+           // ((CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar)).setTitle(movieName);
 
         }else{
             Toast.makeText(this, "No API Data", Toast.LENGTH_SHORT).show();
