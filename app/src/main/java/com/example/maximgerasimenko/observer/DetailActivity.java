@@ -50,9 +50,7 @@ public class DetailActivity extends AppCompatActivity {
     private Movie favorite;
     private final AppCompatActivity activity = DetailActivity.this;
 
-    Movie movie;
     String thumbnail, movieName, synopsis, rating, dateOfRelease;
-    int movie_id;
 
     //Metoda onCreate (tworzy widok)
     @Override
