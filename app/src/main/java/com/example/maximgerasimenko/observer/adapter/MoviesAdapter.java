@@ -3,6 +3,7 @@ package com.example.maximgerasimenko.observer.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.maximgerasimenko.observer.DetailActivity;
 import com.example.maximgerasimenko.observer.R;
 import com.example.maximgerasimenko.observer.model.Movie;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
@@ -69,6 +71,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
                     if(pos != RecyclerView.NO_POSITION){
                         Movie clickedDataItem = movieList.get(pos);
                         Intent intent  = new Intent(mContext, DetailActivity.class);
+                        //intent.putExtra("movies", (Parcelable) clickedDataItem);
                         intent.putExtra("original_title", movieList.get(pos).getOriginalTitle());
                         intent.putExtra("poster_path", movieList.get(pos).getPosterPath());
                         intent.putExtra("overview", movieList.get(pos).getOverview());

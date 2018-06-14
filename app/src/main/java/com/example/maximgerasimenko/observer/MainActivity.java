@@ -35,6 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
+
     private RecyclerView recyclerView;
     private MoviesAdapter adapter;
     private List<Movie> movieList;
@@ -44,13 +45,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private AppCompatActivity activity = MainActivity.this;
     public static final String LOG_TAG = MoviesAdapter.class.getName();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initViews();
 
-
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     }
 
     public Activity getActivity(){
@@ -62,24 +65,29 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             context = ((ContextWrapper) context).getBaseContext();
         }
         return null;
+
     }
 
     private void initViews(){
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         movieList = new ArrayList<>();
         adapter = new MoviesAdapter(this, movieList);
 
+
+
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        }
-        else{
+        } else {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         }
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         favoriteDbHelper = new FavoriteDbHelper(activity);
+
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.main_content);
         swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);
@@ -92,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         });
 
         checkSortOrder();
+
     }
 
     private void initViews2(){
@@ -115,69 +124,72 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private void loadJSON(){
-    try{
-        if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty())
-        {
-            Toast.makeText(getApplicationContext(), "Please obtaint API key firstly", Toast.LENGTH_SHORT).show();
-            pd.dismiss();
-            return;
-        }
-        Client Client = new Client();
-        Service apiService =
-                Client.getClient().create(Service.class);
-        Call<MoviesResponse> call = apiService.getPopularMovies(BuildConfig.THE_MOVIE_DB_API_TOKEN);
-        call.enqueue(new Callback<MoviesResponse>() {
-            @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                List<Movie> movies = response.body().getResults();
-                recyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
-                recyclerView.smoothScrollToPosition(0);
-                if (swipeContainer.isRefreshing()){
-                    swipeContainer.setRefreshing(false);
-                }
-                //pd.dismiss();
-            }
 
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t){
-                Log.d("Error", t.getMessage());
-                Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }catch (Exception e){
-        Log.d("Error", e.getMessage());
-        Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-    }
-   }
-
-    private void loadJSON1(){
         try{
-            if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty())
-            {
-                Toast.makeText(getApplicationContext(), "Please obtaint API key firstly", Toast.LENGTH_SHORT).show();
+            if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
+                Toast.makeText(getApplicationContext(), "Please obtain API Key firstly from themoviedb.org", Toast.LENGTH_SHORT).show();
                 pd.dismiss();
                 return;
             }
+
             Client Client = new Client();
             Service apiService =
                     Client.getClient().create(Service.class);
-            Call<MoviesResponse> call = apiService.getTopRatedMovies(BuildConfig.THE_MOVIE_DB_API_TOKEN);
+            Call<MoviesResponse> call = apiService.getPopularMovies(BuildConfig.THE_MOVIE_DB_API_TOKEN);
             call.enqueue(new Callback<MoviesResponse>() {
                 @Override
-                public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response){
+                public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                     List<Movie> movies = response.body().getResults();
                     recyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
                     recyclerView.smoothScrollToPosition(0);
                     if (swipeContainer.isRefreshing()){
                         swipeContainer.setRefreshing(false);
                     }
-                    //pd.dismiss();
+
                 }
 
                 @Override
-                public void onFailure(Call<MoviesResponse> call, Throwable t){
+                public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
                     Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }catch (Exception e){
+            Log.d("Error", e.getMessage());
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void loadJSON1(){
+
+        try{
+            if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
+                Toast.makeText(getApplicationContext(), "Please obtain API Key firstly from themoviedb.org", Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+                return;
+            }
+
+            Client Client = new Client();
+            Service apiService =
+                    Client.getClient().create(Service.class);
+            Call<MoviesResponse> call = apiService.getTopRatedMovies(BuildConfig.THE_MOVIE_DB_API_TOKEN);
+            call.enqueue(new Callback<MoviesResponse>() {
+                @Override
+                public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                    List<Movie> movies = response.body().getResults();
+                    recyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
+                    recyclerView.smoothScrollToPosition(0);
+                    if (swipeContainer.isRefreshing()){
+                        swipeContainer.setRefreshing(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                    Log.d("Error", t.getMessage());
+                    Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }catch (Exception e){
@@ -194,19 +206,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
+        switch (item.getItemId()){
             case R.id.menu_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
-                default:
-                    return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-        Log.d(LOG_TAG,"Preferences updated");
+        Log.d(LOG_TAG, "Preferences updated");
         checkSortOrder();
     }
 
@@ -216,14 +228,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 this.getString(R.string.pref_sort_order_key),
                 this.getString(R.string.pref_most_popular)
         );
-        if(sortOrder.equals(this.getString(R.string.pref_most_popular))) {
+        if (sortOrder.equals(this.getString(R.string.pref_most_popular))) {
             Log.d(LOG_TAG, "Sorting by most popular");
             loadJSON();
-        }else if(sortOrder.equals(this.getString(R.string.favorite))){
-            Log.d(LOG_TAG,"Sorting by favorite");
+        } else if (sortOrder.equals(this.getString(R.string.favorite))){
+            Log.d(LOG_TAG, "Sorting by favorite");
             initViews2();
-        } else {
-            Log.d(LOG_TAG,"Sorting by vote average");
+        } else{
+            Log.d(LOG_TAG, "Sorting by vote average");
             loadJSON1();
         }
     }
@@ -231,10 +243,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onResume(){
         super.onResume();
-        if(movieList.isEmpty()){
+        if (movieList.isEmpty()){
             checkSortOrder();
-        } else{
+        }else{
 
+            checkSortOrder();
         }
     }
 
